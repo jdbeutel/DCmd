@@ -860,6 +860,12 @@ class BootStrap {
                             currentPurchase:true
                     ).save(failOnError:true)
                 }
+
+                def java, grails
+                if (!SoftwareTechnologies.count()){
+                    java = new SoftwareTechnologies(name: 'java', abbreviation: 'java').save(failOnError: true, flush: true)
+                    grails = new SoftwareTechnologies(name:'grails', abbreviation: 'grails').save(failOnError: true, flush: true)
+                }
                                    /*
                 def purchaseSupport1, purchaseSupport2, purchaseSupport3
                 purchaseSupport1 = new SupportRole(roleName:rolePrimarySA, roleType:'Technical', person:stevenSakata, supportedObject:purchase1).save(failOnError:true)
@@ -1313,6 +1319,12 @@ class BootStrap {
                     train = new Environment(name: 'Training', abbreviation: 'train').save( failOnError: true, flush: true )
                 }
 
+                def java, grails
+                if (!SoftwareTechnologies.count()){
+                    java = new SoftwareTechnologies(name: 'java', abbreviation: 'java').save(failOnError: true, flush: true)
+                    grails = new SoftwareTechnologies(name:'grails', abbreviation: 'grails').save(failOnError: true, flush: true)
+                }
+
                 def availStatus, problemStatus, maintStatus, offlineStatus
                 if (!Status.count()) {
                     availStatus = new Status( abbreviation: 'Available')
@@ -1752,7 +1764,8 @@ class BootStrap {
                             env: prod,
                             asset: aphrodite,
                             status: availStatus,
-                            type: 'Standalone'
+                            type: 'Standalone',
+                            ipAddress: '172.2565.2453'
                     )
                     aphroditeServer.save(failOnError: true, flush: true)
 
