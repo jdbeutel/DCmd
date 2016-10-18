@@ -144,6 +144,11 @@
                         date="${hostInstance?.lastUpdated}" /></td>
 
             </tr>
+        </table>
+    </div>
+    <div class="item">
+        <table class="floatTables" style="border:1px solid #CCCCCC;">
+            <tr><td colspan="2"><center><b>Security</b></center></td></tr>
             <tr>
                 <td valign="top" class="name">Last Scanned</td>
                 <td valign="top" class="value"><g:formatDate format="MM/dd/yyyy" date="${hostInstance?.lastScanned}"/></td>
