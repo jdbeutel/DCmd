@@ -167,6 +167,20 @@ class GeneralService {
         return buf.toString()
     }
 
+    def listSoftwareAsSelect() {
+        def lst = SoftwareTechnologies.createCriteria().list {
+            order('name', 'asc')
+        }
+        StringBuffer buf = new StringBuffer("")
+        lst.each{
+            buf.append("{id:\'${it.id}\',text:'")
+            buf.append(it.toString())
+            buf.append("'},")
+        }
+
+        return buf.toString()
+    }
+
     def listStatusAsSelect() {
         def lst = Status.createCriteria().list {
             order('abbreviation', 'asc')
@@ -350,6 +364,17 @@ def listLocationsAsSelect() {
         }
 
         return params.env
+    }
+
+    def createOrSelectSoftwareTech(params) {
+        if(params.int('softwareTechSelect') == null){
+            def newSoftwareTech = new SoftwareTechnologies(name: "${params.softwareTechSelect}", abbreviation: "${params.softwareTechSelect}")
+            newSoftwareTech.save(flush: true)
+            params.softwareTech = SoftwareTechnologies.get(newSoftwareTech.id)
+        }
+        else {
+            params.softwareTech = SoftwareTechnologies.get(params.softwareTechSelect)
+        }
     }
 
     def createOrSelectStatus(params) {

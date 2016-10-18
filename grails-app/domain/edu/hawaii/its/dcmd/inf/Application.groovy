@@ -33,6 +33,7 @@ class Application extends SupportableObject {
     String planningNote
     Status status
     Environment env
+    SoftwareTechnologies softwareTech
     Integer incidentServiceLevel
     String incidentEmailList
     String url
@@ -44,7 +45,8 @@ class Application extends SupportableObject {
 	static hasMany = [
         supportStaff:PersonSupportRole,
         services: Service,
-        tiers: Tier
+        tiers: Tier,
+        softwareTech: SoftwareTechnologies
 	]
 
     static mapping = {
@@ -65,6 +67,7 @@ class Application extends SupportableObject {
         status(nullable: true, default:"Available")
         services(nullable: true)
         env(nullable: false)
+        softwareTech(nullable: true)
         maintenanceWindow(nullable:true)
         url(nullable:true)
         incidentEmailList(nullable:true)

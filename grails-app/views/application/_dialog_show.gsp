@@ -43,6 +43,10 @@
                 <td valign="top" class="value">${fieldValue(bean: applicationInstance, field: "env")}</td>
             </tr>
             <tr>
+                <td valign="top" class="name"><g:message code="application.title.label" default="Software Technologies" /></td>
+                <td valign="top" class="value">${fieldValue(bean: applicationInstance, field: "softwareTech")}</td>
+            </tr>
+            <tr>
                 <td valign="top" class="name"><g:message code="application.applicationStatus.label" default="Status" /></td>
                 <td valign="top" class="value">${fieldValue(bean: applicationInstance, field: "status")}</td>
             </tr>

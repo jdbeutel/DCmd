@@ -60,6 +60,12 @@
                     <g:render template="../environmentSelect" model="[objectInstance:applicationInstance]"/>                </td>
             </tr>
             <tr>
+                <td valign="top" class="name"><g:message code="application.applicationSoftwareTech.label" default="Software Technologies" /></td>
+                <td valign="top"
+                    class="value ${hasErrors(bean: applicationInstance, field: 'softwareTech', 'errors')}">
+                    <g:render template="../softwareTechSelect" model="[objectInstance:applicationInstance]"/>                </td>
+            </tr>
+            <tr>
                 <td valign="top" class="name"><g:message code="application.applicationStatus.label" default="Status" /></td>
                 <td valign="top"
                     class="value ${hasErrors(bean: applicationInstance, field: 'status', 'errors')}">

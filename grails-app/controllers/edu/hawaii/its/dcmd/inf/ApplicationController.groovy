@@ -95,6 +95,9 @@ class ApplicationController {
         if(params.environmentSelect) {
             params.env = generalService.createOrSelectEnv(params)
         }
+        if(params.softwareTechSelect) {
+            params.softwareTechSelect = generalService.createOrSelectSoftwareTech(params)
+        }
         def applicationInstance = new Application(params)
         String saveOption = params.option //selects type of save to do
 
@@ -158,6 +161,9 @@ class ApplicationController {
         }
         if(params.environmentSelect) {
             params.env = generalService.createOrSelectEnv(params)
+        }
+        if(params.softwareTechSelect) {
+            params.softwareTechSelect = generalService.createOrSelectSoftwareTech(params)
         }
 
         if (applicationInstance) {
@@ -389,6 +395,20 @@ class ApplicationController {
 
     def listEnvironmentsAsSelect={
         def lst = Environment.findAll()
+
+        StringBuffer buf = new StringBuffer("<select>")
+        lst.each{
+            buf.append("<option value=\"${it.id}\">")
+            buf.append(it.toString())
+            buf.append("</option>")
+        }
+        buf.append("</select>")
+
+        render buf.toString()
+    }
+
+    def listSoftwareAsSelect={
+        def lst = SoftwareTechnologies.findAll()
 
         StringBuffer buf = new StringBuffer("<select>")
         lst.each{
