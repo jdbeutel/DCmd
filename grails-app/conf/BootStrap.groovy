@@ -361,14 +361,12 @@ class BootStrap {
                  def defaultSettings = new Uisettings(themeVal:1,header:1,background:1,font:1).save(failOnError: true,flush:true)
 
                 def userKarsin, userElfalan, userHodges, kawachi, ckawano, jonathan, czane, steven, garry, thang, romeot,
-                    anicasm, nakadoma, vyoshida, osamum, kc96813, userKylanh, userTylercn, userAaronvil, userAlaimana
+                    anicasm, nakadoma, vyoshida, osamum, kc96813, userKylanh, userAaronvil, userKsanidad
                 if(!User.count()) {
-                    userAlaimana = new User(username: 'alaimana', password:'none', enabled: true)
-                    userAlaimana.save(failOnError:true,flush:true)
                     userAaronvil = new User(username: 'aaronvil', password:'none', enabled: true)
                     userAaronvil.save(failOnError:true,flush:true)
-                    userTylercn = new User(username: 'tylercn', password:'none', enabled: true)
-                    userTylercn.save(failOnError:true,flush:true)
+                    userKsanidad = new User(username: ksanidad, password:'none', enabled: true)
+                    userKsanidad.save(failOnError: true, flush: true)
                     userKarsin = new User(username: 'karsin', password:'none', enabled: true)
                     userKarsin.save(failOnError:true,flush:true)
                     userElfalan = new User(username: 'elfalan', password:'none', enabled: true)
@@ -407,14 +405,12 @@ class BootStrap {
                 }
                 def rolesKarsin, rolesElfalan, rolesHodges, rolesKawachi, rolesCkawano, rolesJonathan, rolesCzane,
                     rolesSteven, rolesGarry, rolesThang, rolesRomeot, rolesAnicasm, rolesNakadoma, rolesVyoshida,
-                    rolesOsamum, rolesKc96813, rolesKylanh, rolesTylercn, rolesAaronvil, rolesAlaimana
+                    rolesOsamum, rolesKc96813, rolesKylanh, rolesAaronvil, rolesKsanidad
                 if(!UserRole.count()) {
-                    rolesAlaimana = new UserRole(user: userAlaimana, role: ROLE_USER)
-                    rolesAlaimana.save(failOnError:true,flush:true)
                     rolesAaronvil = new UserRole(user: userAaronvil, role: ROLE_USER)
                     rolesAaronvil.save(failOnError:true,flush:true)
-                    rolesTylercn = new UserRole(user: userTylercn, role: ROLE_USER)
-                    rolesTylercn.save(failOnError:true,flush:true)
+                    rolesKsanidad = new UserRole(user: userKsanidad, role: ROLE_USER)
+                    rolesKsanidad.save(failOnError: true, flush: true)
                     rolesKarsin = new UserRole(user: userKarsin, role: ROLE_USER)
                     rolesKarsin.save(failOnError:true,flush:true)
                     rolesElfalan = new UserRole(user: userElfalan, role: ROLE_USER)
@@ -1126,14 +1122,12 @@ class BootStrap {
 
 
                 def userKarsin, userElfalan, userHodges, kawachi, ckawano, jonathan, czane, steven, garry, thang, romeot,
-                    anicasm, nakadoma, vyoshida, osamum, kc96813, userKylanh, userJshima, userTylercn, userAaronvil, userAlaimana
+                    anicasm, nakadoma, vyoshida, osamum, kc96813, userKylanh, userJshima, userAaronvil, userKsanidad
                 if(!User.count()) {
-                    userAlaimana = new User(username: 'alaimana', password:'none', enabled: true, userSettings: defaultSettings)
-                    userAlaimana.save(failOnError:true,flush:true)
                     userAaronvil = new User(username: 'aaronvil', password:'none', enabled: true, userSettings: defaultSettings)
                     userAaronvil.save(failOnError:true,flush:true)
-                    userTylercn = new User(username: 'tylercn', password:'none', enabled: true, userSettings: defaultSettings)
-                    userTylercn.save(failOnError:true,flush:true)
+                    userKsanidad = new User(username: 'ksanidad', password:'none', enabled: true, userSettings: defaultSettings)
+                    userKsanidad.save(failOnError:true,flush:true)
                     userKarsin = new User(username: 'karsin', password:'none', enabled: true, userSettings: defaultSettings)
                     userKarsin.save(failOnError:true,flush:true)
                     userElfalan = new User(username: 'elfalan', password:'none', enabled: true, userSettings: defaultSettings)
@@ -1174,14 +1168,12 @@ class BootStrap {
                 }
                 def rolesKarsin, rolesElfalan, rolesHodges, rolesKawachi, rolesCkawano, rolesJonathan, rolesCzane,
                         rolesSteven, rolesGarry, rolesThang, rolesRomeot, rolesAnicasm, rolesNakadoma, rolesVyoshida,
-                        rolesOsamum, rolesKc96813, rolesKylanh, rolesJshima, rolesTylercn, rolesAaronvil, rolesAlaimana
+                        rolesOsamum, rolesKc96813, rolesKylanh, rolesJshima, rolesAaronvil, rolesKsanidad
                 if(!UserRole.count()) {
-                    rolesAlaimana = new UserRole(user: userAlaimana, role: ROLE_ADMIN)
-                    rolesAlaimana.save(failOnError:true,flush:true)
                     rolesAaronvil = new UserRole(user: userAaronvil, role: ROLE_ADMIN)
                     rolesAaronvil.save(failOnError:true,flush:true)
-                    rolesTylercn = new UserRole(user: userTylercn, role: ROLE_ADMIN)
-                    rolesTylercn.save(failOnError:true,flush:true)
+                    rolesKsanidad = new UserRole(user: userKsanidad, role: ROLE_ADMIN)
+                    rolesKsanidad.save(failOnError:true,flush:true)
                     rolesKarsin = new UserRole(user: userKarsin, role: ROLE_ADMIN)
                     rolesKarsin.save(failOnError:true,flush:true)
                     rolesElfalan = new UserRole(user: userElfalan, role: ROLE_ADMIN)
