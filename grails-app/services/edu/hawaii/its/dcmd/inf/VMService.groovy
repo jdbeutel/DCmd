@@ -175,7 +175,6 @@ class VMService {
     }
 
     // Have to create a method that updates the current Hosts(Virtual Machines) already in DCMD.
-    // This controller is not to create new Hosts or Assets(HostSystems).
     ArrayList<String> updateHosts(ArrayList<ManagedEntity> virtualMachines, ServerConnection sc) {
 
         def tempHost
