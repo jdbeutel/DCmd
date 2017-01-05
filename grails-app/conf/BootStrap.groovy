@@ -434,11 +434,12 @@ class BootStrap {
 
                 }
 
-                def dev, test, prod, qa, baseline, train, seed
+                def dev, test, prod, qa, baseline, train, seed, unassigned
                 def pprod
                 if (!Environment.count()) {
-                    seed = new Environment( name: 'seed', abbreviation: 'seed' ).save( failOnError: true, flush: true )
 
+                    seed = new Environment( name: 'seed', abbreviation: 'seed' ).save( failOnError: true, flush: true )
+                    unassigned = new Environment(name: 'Unassigned', abbreviation: 'unassigned').save( failOnError: true, flush: true )
                     prod = new Environment( name: 'production', abbreviation: 'prod' ).save( failOnError: true, flush: true )
                     pprod = new Environment( name: 'pre-production', abbreviation: 'pre-prod' ).save( failOnError: true, flush: true )
                     test = new Environment( name: 'test', abbreviation: 'test' ).save( failOnError: true, flush: true )
@@ -446,6 +447,7 @@ class BootStrap {
                     qa = new Environment(name: 'Quality Assurance', abbreviation: 'qa').save( failOnError: true, flush: true )
                     baseline = new Environment(name: 'Baseline', abbreviation: 'baseline').save( failOnError: true, flush: true )
                     train = new Environment(name: 'Training', abbreviation: 'train').save( failOnError: true, flush: true )
+
                 }
 
                 if (!UnitType.count()){
@@ -1299,9 +1301,10 @@ class BootStrap {
                 /*
                  *
                  */
-                def dev, test, prod, qa, baseline, train, pprod, seed
+                def dev, test, prod, qa, baseline, train, pprod, seed, unassigned
                 if (!Environment.count()) {
                     pprod = new Environment( name: 'pre-production', abbreviation: 'pre-prod' ).save( failOnError: true, flush: true )
+                    unassigned = new Environment(name: 'Unassigned', abbreviation: 'unassigned').save( failOnError: true, flush: true )
                     seed = new Environment( name: 'seed', abbreviation: 'seed' ).save( failOnError: true, flush: true )
                     prod = new Environment( name: 'production', abbreviation: 'prod' ).save( failOnError: true, flush: true )
                     test = new Environment( name: 'test', abbreviation: 'test' ).save( failOnError: true, flush: true )
@@ -1309,6 +1312,7 @@ class BootStrap {
                     qa = new Environment(name: 'Quality Assurance', abbreviation: 'qa').save( failOnError: true, flush: true )
                     baseline = new Environment(name: 'Baseline', abbreviation: 'baseline').save( failOnError: true, flush: true )
                     train = new Environment(name: 'Training', abbreviation: 'train').save( failOnError: true, flush: true )
+
                 }
 
                 def java, grails
@@ -1485,7 +1489,7 @@ class BootStrap {
                     locale2 = new Location( locationDescription: "Keller 103", updatedById: 1 ).save(failOnError: true, flush: true)
                     locale3 = new Location( locationDescription: "Campus Center 304", updatedById: 1).save(failOnError: true, flush: true)
                 }
-                def solarisCluster, standalone, vmcluster
+                def solarisCluster, standalone, vmcluster, small_prod_cluster
                 if ( ! Cluster.count() ) {
                     vmcluster = new Cluster(name: "VMware Cluster 2" )
                     vmcluster.save(failOnError:true, flush:true)
@@ -1493,6 +1497,8 @@ class BootStrap {
                     standalone.save(failOnError:true, flush:true)
                     solarisCluster = new Cluster(name: "Solaris Global Zones")
                     solarisCluster.save(failOnError:true, flush:true)
+                    small_prod_cluster = new Cluster(name: "small_prod_cluster")
+                    small_prod_cluster.save(failOnError:true, flush:true)
                 }
 
                 def rack1, rack2
@@ -1573,8 +1579,8 @@ class BootStrap {
                     esx56 = new PhysicalServer(cluster:standalone, itsId: "esx56", updatedById: 001, location: locale2, assetType: server, manufacturer: madeBy1, rackable:true, RU_begin: 0, RU_size:0, RU_planned_begin: 0)
                     esx56.save(failOnError: true, flush:true)
                     
-                    esx56 = new PhysicalServer(cluster:standalone, itsId: "esx59", updatedById: 001, location: locale2, assetType: server, manufacturer: madeBy1, rackable:true, RU_begin: 0, RU_size:0, RU_planned_begin: 0)
-                    esx56.save(failOnError: true, flush:true)
+                    esx59 = new PhysicalServer(cluster:standalone, itsId: "esx59", updatedById: 001, location: locale2, assetType: server, manufacturer: madeBy1, rackable:true, RU_begin: 0, RU_size:0, RU_planned_begin: 0)
+                    esx59.save(failOnError: true, flush:true)
 
                 }
 
