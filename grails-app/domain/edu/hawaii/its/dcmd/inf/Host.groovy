@@ -105,7 +105,7 @@ class Host extends SupportableObject {
         generalNote(nullable: true, maxSize: 1024)
         changeNote(nullable: true, maxSize: 1024)
         planningNote(nullable: true, maxSize: 1024)
-        env(nullable:false)
+        env(nullable: false, default:"unassigned")
 
         psaName(nullable: true)
         appList(nullable: true)

@@ -32,8 +32,14 @@
         width:150,
         createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
         initSelection: function(element, callback) {
-            var data = {id: "${objectInstance?.env?.id}", text: "${objectInstance?.env.toString()}"};
-                callback(data);
+            if("${objectInstance?.env?.id}" != "") {
+                var data = {id: "${objectInstance?.env?.id}", text: "${objectInstance?.env.toString()}"};
+            }
+            else
+            {
+                var data = {id:"2", text:"unassigned"};
+            }
+            callback(data);
         },
         data: [${genService.listEnvsAsSelect()}]
     }).select2('val', '0');
