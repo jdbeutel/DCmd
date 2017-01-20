@@ -88,7 +88,7 @@
     </div>
     <div class="item">
         <table class="floatTables" style="border:1px solid #CCCCCC;">
-            <g:if test="${hostInstance.type == 'VMWare'}">
+            <g:if test="${hostInstance.type == 'VMWare'||hostInstance.type == 'VMware'}">
                 <tr><td colspan="2"><center><b>VMWare Details (pulled from VCenter)</b></center></td></tr>
                 <tr>
                     <td valign="top" class="name">VM State</td>
