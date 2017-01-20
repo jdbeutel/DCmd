@@ -36,7 +36,7 @@ class VMService {
             def jsonSlurper = new JsonSlurper()
             def InputJSON = jsonSlurper.parseText(inputFile.text)
             InputJSON.each {
-
+                println(it)
                 def si
                 def rootFolder
                 ArrayList<ManagedEntity> servers = new ArrayList<ManagedEntity>()
@@ -48,7 +48,6 @@ class VMService {
                 password = it.password
 
                 println(url.host)
-
                 si = new ServiceInstance(url, username, password, true)
                 rootFolder = si.rootFolder
 
@@ -56,37 +55,34 @@ class VMService {
 
                 // Add physicalServers to list from VCenter
 
-               // println("Before Adding Servers")
+                //println("Before Adding Servers")
                 nav.searchManagedEntities("HostSystem").each {
                     servers.add(it)
                 }
-               // println("Added Servers")
+                println("Added Servers")
                 // Add virtual Hosts to list from VCenter
 
                 nav.searchManagedEntities("VirtualMachine").each {
-                //    println(it.getParent().name)
-               //     println(it.getParent().getParent().name)
+                    //println(it.getParent().name)
+                    //println(it.getParent().getParent().name)
                     //it.physicalServer = (HostSystem) MorUtil.createExactManagedEntity(si.getServerConnection(), it.getRuntime().getHost())
                     virtualMachines.add(it)
                 }
-
                 ArrayList<String> updatedServers = updateServers(servers, url.host.tokenize(".")?.get(0)?.toLowerCase())
-                //println("Updated Servers")
+                println("Updated Servers")
 
                 updatedServers.each {
-                    //   System.out.println(it)
+                       //System.out.println(it)
                 }
 
-                // uUpdate DCmd with all virtual Hosts from all VCenters
+                // Update DCmd with all virtual Hosts from all VCenters
                 ArrayList<String> updatedHosts = updateHosts(virtualMachines, si.serverConnection)
-               // println("Updated VMs")
+                println("Updated VMs")
 
-                //println("Added VMs")
+                println("Added VMs")
                 si.serverConnection.logout()
-
                 clearLogEntries()
             }
-
 
         }
         catch(RemoteException e){
@@ -132,6 +128,7 @@ class VMService {
                         memorySize:memSize, cpuSpeed:cpuSpeed,numCores:numCores, numThreads:numThreads,
                         vendor: server.getHardware().getSystemInfo().vendor, modelDesignation: server.getHardware().getSystemInfo().model) // Add other attributes from VCenter...
                 tempServer.save(flush:true, failOnError: true)
+               // System.out.println("Server " + tempServer + " saved")
                 newServers.add("Server " + tempServer.itsId + " created")
             }
             else {
@@ -167,6 +164,7 @@ class VMService {
 
                 if(isChanged) {
                     tempServer.save(flush:true)
+                    System.out.println("Serever " + tempServer + " updated")
                     updatedServers.add("Server " + tempServer.itsId + " updated")
                 }
             }
@@ -184,6 +182,7 @@ class VMService {
         def updatedHosts = new ArrayList<String>()
         def dnsInfo
         def isChanged=false
+
 
         virtualMachines.each{ vm ->
             isChanged=false
@@ -206,11 +205,10 @@ class VMService {
                 tempHost = Host.findByHostname(hostName)
 
                 tempServer = PhysicalServer.findByItsId(getShortenedHostName(vmHost.name))
+
                 if (tempServer == null)
                     System.out.println("Server not found. This should never happen...")
-
                 tempCluster = Cluster.findByName(vmHost.getParent().name)
-
                 /*************************
                  * These stats are what we will use for memory... Find out what to use for CPU....
                  */
@@ -228,8 +226,7 @@ class VMService {
                 }
 
                 def ipAddrs = ""
-                if(vm.getGuest()?.net.size() > 1) {
-
+                if(vm.getGuest()?.net?.size() > 1) {
                     vm.getGuest()?.net?.each {
                         if(it.ipAddress != null)
                             ipAddrs += it?.ipAddress[0] + ", "
@@ -248,14 +245,13 @@ class VMService {
                 if(tempOs == 'Microsoft Windows Server 2012 (64-bit)')
                     tempOs = 'Microsoft Windows Server 2012/2012R2 (64-bit)'
 
-
                 //System.out.println(vm.name + ", " + getShortenedHostName(vmHost.name) + ", " + hostName + ", " + tempCluster.name)
                 if (tempHost == null) { // If doesn't exist, create it
-
-                    tempHost = new Host(hostname: hostName, type: 'VMWare', asset: tempServer, cluster: tempCluster,
+                    tempHost = new Host(hostname: hostName, env: Environment.get(2), type: 'VMWare', asset: tempServer, cluster: tempCluster,
                             vcName:vm.name, fullDomain:dnsName[0]?.toLowerCase(), ipAddress:ipAddrs, maxMemory: vm.getRuntime().maxMemoryUsage,
                             maxCpu: vm.getRuntime().maxCpuUsage, vCenterState: String.valueOf(vm.getRuntime().connectionState),
                             os:tempOs)
+                    System.out.println("Now trying to save " + tempHost + "." )
                     tempHost.save(flush:true, failOnError: true)
                     updatedHosts.add("VM " + tempHost.hostname + " created")
                 }
@@ -265,6 +261,7 @@ class VMService {
                         tempHost.asset = tempServer
                         isChanged=true
                     }
+
                     if(tempHost.cluster != tempCluster) {
                      //   System.out.println(tempHost.cluster?.name + " -> " + tempCluster.name)
                         tempHost.cluster = tempCluster
@@ -315,6 +312,7 @@ class VMService {
                 //System.out.println("Guest named " + vm.name + " dnsName was null, could not determine hostName")
  //               System.out.println(vm.name)
         }
+        System.out.println("Host are done being updated")
 
         // updatedHosts.each {
         //    System.out.println(it)
@@ -329,7 +327,7 @@ class VMService {
         Date thisMinute = new Date()
         thisMinute = DateUtils.addMinutes(thisMinute, -10)
 
-        println(thisMinute)
+        println("Finished at " + thisMinute)
         def logEntries = AuditLogEvent.createCriteria().list {
             like('actor', 'system')
             ge('lastUpdated',thisMinute)
