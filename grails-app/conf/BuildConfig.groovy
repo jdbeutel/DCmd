@@ -23,6 +23,7 @@ grails.project.test.reports.dir = "target/test-reports"
  */
 
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
+grails.project.dependency.resolver = "maven"
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -44,10 +45,10 @@ grails.project.dependency.resolution = {
           mavenRepo "http://repository.codehaus.org"
           mavenRepo "http://download.java.net/maven/2/"
           mavenRepo "http://repository.jboss.com/maven2/"
-          mavenRepo "http://repo.spring.io/milestone/"
+          mavenRepo "https://repo.spring.io/milestone/"
 
         //uncomment to install ssh plugin dependency
-         mavenRepo("http://repo1.maven.org/maven2/")
+         mavenRepo("https://repo1.maven.org/maven2/")
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
