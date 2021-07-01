@@ -365,7 +365,7 @@ class BootStrap {
                 if(!User.count()) {
                     userAaronvil = new User(username: 'aaronvil', password:'none', enabled: true)
                     userAaronvil.save(failOnError:true,flush:true)
-                    userKsanidad = new User(username: ksanidad, password:'none', enabled: true)
+                    userKsanidad = new User(username: 'ksanidad', password:'none', enabled: true)
                     userKsanidad.save(failOnError: true, flush: true)
                     userKarsin = new User(username: 'karsin', password:'none', enabled: true)
                     userKarsin.save(failOnError:true,flush:true)
@@ -1123,9 +1123,11 @@ class BootStrap {
                 def defaultSettings = new Uisettings(themeVal:1,header:1,background:1,font:11).save(failOnError: true,flush:true)
 
 
-                def userKarsin, userElfalan, userHodges, kawachi, ckawano, jonathan, czane, steven, garry, thang, romeot,
+                def jbeutel, userKarsin, userElfalan, userHodges, kawachi, ckawano, jonathan, czane, steven, garry, thang, romeot,
                     anicasm, nakadoma, vyoshida, osamum, kc96813, userKylanh, userJshima, userAaronvil, userKsanidad
                 if(!User.count()) {
+                    jbeutel = new User(username: 'jbeutel', password:'none', enabled: true, userSettings: defaultSettings)
+                    jbeutel.save(failOnError:true,flush:true)
                     userAaronvil = new User(username: 'aaronvil', password:'none', enabled: true, userSettings: defaultSettings)
                     userAaronvil.save(failOnError:true,flush:true)
                     userKsanidad = new User(username: 'ksanidad', password:'none', enabled: true, userSettings: defaultSettings)
@@ -1172,6 +1174,7 @@ class BootStrap {
                         rolesSteven, rolesGarry, rolesThang, rolesRomeot, rolesAnicasm, rolesNakadoma, rolesVyoshida,
                         rolesOsamum, rolesKc96813, rolesKylanh, rolesJshima, rolesAaronvil, rolesKsanidad
                 if(!UserRole.count()) {
+                    new UserRole(user: jbeutel, role: ROLE_ADMIN).save(failOnError:true,flush:true)
                     rolesAaronvil = new UserRole(user: userAaronvil, role: ROLE_ADMIN)
                     rolesAaronvil.save(failOnError:true,flush:true)
                     rolesKsanidad = new UserRole(user: userKsanidad, role: ROLE_ADMIN)
