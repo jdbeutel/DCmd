@@ -14,10 +14,7 @@
       <configuration>
         <webroots>
           <root url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/cache-headers-1.1.5/web-app" relative="/" />
-          <root url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/tooltip-0.7/web-app" relative="/" />
-          <root url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/tooltip-0.7/grails-app/views" relative="/" />
           <root url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/spring-security-core-2.0-RC2/grails-app/views" relative="/" />
-          <root url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/csv-0.3.1/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/resources-1.2.8/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/cookie-session-2.0.14/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/audit-logging-1.0.0/grails-app/views" relative="/" />
@@ -39,6 +36,9 @@
         </webroots>
         <sourceRoots />
       </configuration>
+    </facet>
+    <facet type="Spring" name="Spring">
+      <configuration />
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
@@ -69,10 +69,6 @@
       <sourceFolder url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/cookie-session-2.0.14/src/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/cookie-session-2.0.14/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/cookie-session-2.0.14/grails-app/i18n" isTestSource="false" />
-    </content>
-    <content url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/csv-0.3.1">
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/csv-0.3.1/src/groovy" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/csv-0.3.1/grails-app/i18n" isTestSource="false" />
     </content>
     <content url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/directory-service-0.10.1">
       <sourceFolder url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/directory-service-0.10.1/src/groovy" isTestSource="false" />
@@ -159,10 +155,6 @@
       <sourceFolder url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/tomcat-7.0.52.1/src/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/tomcat-7.0.52.1/src/groovy" isTestSource="false" />
     </content>
-    <content url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/tooltip-0.7">
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/tooltip-0.7/grails-app/controllers" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/tooltip-0.7/grails-app/taglib" isTestSource="false" />
-    </content>
     <content url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/underscore-1.4.4" />
     <content url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/webxml-1.4.1">
       <sourceFolder url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/webxml-1.4.1/src/groovy" isTestSource="false" />
@@ -194,9 +186,6 @@
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.eclipse.jdt.core.compiler/ecj/jars/ecj-3.7.2.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.ant/ant-trax/jars/ant-trax-1.7.1.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.quartz-scheduler/quartz/jars/quartz-2.2.1.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/ch.ethz.ganymed/ganymed-ssh2/jars/ganymed-ssh2-build210.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.ldap/spring-ldap-core/jars/spring-ldap-core-1.3.2.RELEASE.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.security/spring-security-ldap/jars/spring-security-ldap-3.2.0.RC1.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.security/spring-security-cas/jars/spring-security-cas-3.2.0.RC1.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.jasig.cas.client/cas-client-core/jars/cas-client-core-3.2.1.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.2.0.RC1.jar!/" />
@@ -208,18 +197,11 @@
           <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.validation/validation-api/jars/validation-api-1.0.0.GA.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-simple/jars/grails-datastore-simple-3.1.0.RELEASE.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/antlr/antlr/jars/antlr-2.7.7.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework/spring-orm/jars/spring-orm-3.2.8.RELEASE.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-gorm-plugin-support/jars/grails-datastore-gorm-plugin-support-3.1.0.RELEASE.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.hibernate/hibernate-commons-annotations/jars/hibernate-commons-annotations-3.2.0.Final.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.hibernate/hibernate-core/jars/hibernate-core-3.6.10.Final.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/dom4j/dom4j/jars/dom4j-1.6.1.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-gorm-hibernate-core/jars/grails-datastore-gorm-hibernate-core-3.1.0.RELEASE.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-gorm-hibernate/jars/grails-datastore-gorm-hibernate-3.1.0.RELEASE.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-gorm/jars/grails-datastore-gorm-3.1.0.RELEASE.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.javassist/javassist/bundles/javassist-3.17.1-GA.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-core/jars/grails-datastore-core-3.1.0.RELEASE.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.esotericsoftware.kryo/kryo/bundles/kryo-2.22.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/de.javakaffee/kryo-serializers/bundles/kryo-serializers-0.26.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/junit/junit-dep/jars/junit-dep-4.10.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.tomcat.embed/tomcat-embed-websocket/jars/tomcat-embed-websocket-7.0.52.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.tomcat.embed/tomcat-embed-logging-log4j/jars/tomcat-embed-logging-log4j-7.0.52.jar!/" />
@@ -227,8 +209,6 @@
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.tomcat.embed/tomcat-embed-jasper/jars/tomcat-embed-jasper-7.0.52.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.tomcat/tomcat-catalina-ant/jars/tomcat-catalina-ant-7.0.52.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.tomcat.embed/tomcat-embed-core/jars/tomcat-embed-core-7.0.52.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.vmware/vijava/jars/vijava-5.1.jar!/" />
-          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.unboundid/unboundid-ldapsdk/jars/unboundid-ldapsdk-2.3.1.jar!/" />
           <root url="file://$USER_HOME$/.grails/2.3.8/projects/dcmd/plugins/excel-import-1.1.0.BUILD-SNAPSHOT/lib" />
         </CLASSES>
         <JAVADOC />
