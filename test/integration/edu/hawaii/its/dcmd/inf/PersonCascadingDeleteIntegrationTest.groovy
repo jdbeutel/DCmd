@@ -9,6 +9,7 @@ class PersonCascadingDeleteIntegrationTest extends GroovyTestCase {
 
 	def testPerson
 
+
 	protected void setUp() {
 		super.setUp()
 
@@ -28,19 +29,6 @@ class PersonCascadingDeleteIntegrationTest extends GroovyTestCase {
 		testPerson.addToPersonSupportRoles(new PersonSupportRole(person:testPerson, supportRole: role1))
 		testPerson.addToPersonSupportRoles(new PersonSupportRole(person:testPerson, supportRole: role2))
 		testPerson.addToPersonSupportRoles(new PersonSupportRole(person:testPerson, supportRole: role3))
-		
-		//create some contact infos
-		def contactInfo1	= new ContactInfo(contactType:"E-mail", contactInfo: "scott@one.com")
-		contactInfo1.save()
-		def contactInfo2	= new ContactInfo(contactType:"Phone", contactInfo: "808-235-7343")
-		contactInfo2.save()
-		def contactInfo3	= new ContactInfo(contactType:"Fax", contactInfo: "808-247-5162")
-		contactInfo3.save(flush: true)
-		
-		//add contact infos to person
-		testPerson.addToContactInfos(contactInfo1)
-		testPerson.addToContactInfos(contactInfo2)
-		testPerson.addToContactInfos(contactInfo3)
 	}
 
 	protected void tearDown() {

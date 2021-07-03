@@ -57,7 +57,7 @@
   
   <!-- JDK definitions -->
   
-  <property name="jdk.bin.1.6" value="${jdk.home.1.6}/bin"/>
+  <property name="jdk.bin.1.6" value="${jdk.home.1.6}/bin"></property>
   <path id="jdk.classpath.1.6">
     <fileset dir="${jdk.home.1.6}">
       <include name="lib/deploy.jar"/>
