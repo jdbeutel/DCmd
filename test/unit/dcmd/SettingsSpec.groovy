@@ -1,6 +1,7 @@
 package dcmd
 
 import grails.test.mixin.TestFor
+import org.hibernate.cfg.Settings
 import spock.lang.Specification
 
 /**

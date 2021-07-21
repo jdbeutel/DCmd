@@ -119,10 +119,17 @@ grails.plugin.springsecurity.ldap.search.base = '[dc=hawaii,dc=edu,ou=People]'
 grails.plugin.springsecurity.cas.serviceUrl = 'http://localhost:8080/its/dcmd/j_spring_cas_security_check'
 /* Set to null in order for CAS 5 security check to work. Original 'http://localhost:8080/its/dcmd/secure/receptor' */
 grails.plugin.springsecurity.cas.proxyCallbackUrl = null
-grails.plugin.springsecurity.logout.afterLogoutUrl =
-        'https://cas-test.its.hawaii.edu/cas/logout?url=http://localhost:8080/its/dcmd/'
-grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://cas-test.its.hawaii.edu/cas/'
 grails.plugin.springsecurity.cas.useSingleSignout = false
+
+// CAS Test
+//grails.plugin.springsecurity.logout.afterLogoutUrl =
+//        'https://cas-test.its.hawaii.edu/cas/logout?url=http://localhost:8080/its/dcmd/'
+//grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://cas-test.its.hawaii.edu/cas/'
+
+// CAS Future Test (usually this is the one to leave commented out)
+grails.plugin.springsecurity.logout.afterLogoutUrl =
+        'https://cas-future-test.its.hawaii.edu/cas/logout?url=http://localhost:8080/its/dcmd/'
+grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://cas-future-test.its.hawaii.edu/cas/'
 
 /***************************************************************************************
  * Un-comment this for Test
