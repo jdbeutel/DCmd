@@ -101,7 +101,7 @@ grails.plugin.springsecurity.cas.loginUri = '/login'
 
 grails.plugin.springsecurity.ldap.context.managerDn = '[dc=hawaii,dc=edu]'
 grails.plugin.springsecurity.ldap.context.managerPassword = '[]'
-grails.plugin.springsecurity.ldap.context.server = 'ldap://ldap1.its.hawaii.edu:389/'
+grails.plugin.springsecurity.ldap.context.server = 'ldap://ldap-test.its.hawaii.edu:389/'
 grails.plugin.springsecurity.ldap.authorities.groupSearchBase =
     '[dc=hawaii,dc=edu,ou=People]'
 grails.plugin.springsecurity.ldap.search.base = '[dc=hawaii,dc=edu,ou=People]'
@@ -194,7 +194,7 @@ ldapServers {
         indexed = ["objectClass", "uid", "mail", "userPassword"]
     }
 }
-grails.plugin.springsecurity.ldap.context.server = 'ldap://ldap1.hawaii.edu:389'
+grails.plugin.springsecurity.ldap.context.server = 'ldap://ldap-test.hawaii.edu:389'
 
 //log4j configuration
 /*

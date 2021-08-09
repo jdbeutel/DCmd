@@ -346,7 +346,7 @@ class PersonService {
         List<String> creds = new ArrayList<String>() //list of desired credentials
         def personInstance = null
 
-        LDAPConnection c = new LDAPConnection("ldap1.its.hawaii.edu", 389);
+        LDAPConnection c = new LDAPConnection("ldap-test.its.hawaii.edu", 389);
 
         try{
 
