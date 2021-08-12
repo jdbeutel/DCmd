@@ -24,6 +24,10 @@ grails.project.test.reports.dir = "target/test-reports"
 
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 grails.project.dependency.resolver = "maven"
+def localMavenCache = System.properties['maven.repo.local']
+if (localMavenCache) {
+    grails.dependency.cache.dir = localMavenCache
+}
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -34,18 +38,23 @@ grails.project.dependency.resolution = {
     repositories {
         grailsPlugins()
         grailsHome()
-        grailsCentral()
+        // grailsCentral()
+        mavenRepo(root: 'https://repo.grails.org/artifactory/plugins', name: 'grailsCentral')
+        mavenRepo(root: 'https://repo.grails.org/artifactory/plugins', name: 'repo_grails_org_grails_plugins')
 
         // uncomment the below to enable remote dependency resolution
         // from public Maven repositories
-          mavenLocal()
-          mavenCentral()
-          mavenRepo "https://repo.grails.org/grails/plugins"
-          mavenRepo "http://snapshots.repository.codehaus.org"
-          mavenRepo "http://repository.codehaus.org"
-          mavenRepo "http://download.java.net/maven/2/"
-          mavenRepo "http://repository.jboss.com/maven2/"
-          mavenRepo "https://repo.spring.io/milestone/"
+        mavenLocal()
+        // mavenCentral()     // commented out to prevent use of obsolete http url
+        mavenRepo "https://repo1.maven.org/maven2"    // updated mavenCentral() for https
+        // mavenRepo "https://repo.maven.apache.org/maven2"    // should also add?
+
+        mavenRepo "https://repo.grails.org/grails/plugins"
+        mavenRepo "http://snapshots.repository.codehaus.org"
+        mavenRepo "http://repository.codehaus.org"
+        mavenRepo "http://download.java.net/maven/2/"
+        mavenRepo "http://repository.jboss.com/maven2/"
+        mavenRepo "https://repo.spring.io/milestone/"
 
         //uncomment to install ssh plugin dependency
          mavenRepo("https://repo1.maven.org/maven2/")
