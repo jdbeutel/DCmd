@@ -20,17 +20,20 @@
 
 //package edu.hawaii.its.dcmd.inf
 
+// per-server-environment externalized config files expected in this directory
+def externalConfigDir = System.properties['uh.config.dir'] ?: "${userHome}/grails-conf"
+
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
 
-// grails.config.locations = [ "classpath:${appName}-config.properties",
-//                             "classpath:${appName}-config.groovy",
-//                             "file:${userHome}/.grails/${appName}-config.properties",
-//                             "file:${userHome}/.grails/${appName}-config.groovy"]
+grails.config.locations = [ "classpath:${appName}-config.properties",
+                             "classpath:${appName}-config.groovy",
+                             "file:${externalConfigDir}/${appName}-config.properties",
+                             "file:${externalConfigDir}/${appName}-config.groovy"]
 
-// if(System.properties["${appName}.config.location"]) {
-//    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
-// }
+ if(System.properties["${appName}.config.location"]) {
+    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
+ }
 
 //def assetService
 
@@ -103,48 +106,7 @@ grails.plugin.springsecurity.ldap.authorities.groupSearchBase =
     '[dc=hawaii,dc=edu,ou=People]'
 grails.plugin.springsecurity.ldap.search.base = '[dc=hawaii,dc=edu,ou=People]'
 
-/***************************************************************************************
- * Un-comment this for Production
- ***************************************************************************************/
-//grails.plugin.springsecurity.cas.serviceUrl = 'https://www.hawaii.edu/its/dcmd/j_spring_cas_security_check'
-//grails.plugin.springsecurity.cas.proxyCallbackUrl = null
-//grails.plugin.springsecurity.logout.afterLogoutUrl =
-//    'https://authn.hawaii.edu/cas/logout?url=https://www.hawaii.edu/its/dcmd/'
-//grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://authn.hawaii.edu/cas/'
-
-/***************************************************************************************
- * Un-comment this for Local Development
- ***************************************************************************************/
-
-grails.plugin.springsecurity.cas.serviceUrl = 'http://localhost:8080/its/dcmd/j_spring_cas_security_check'
-/* Set to null in order for CAS 5 security check to work. Original 'http://localhost:8080/its/dcmd/secure/receptor' */
-grails.plugin.springsecurity.cas.proxyCallbackUrl = null
-grails.plugin.springsecurity.cas.useSingleSignout = false
-
-// CAS Test
-//grails.plugin.springsecurity.logout.afterLogoutUrl =
-//        'https://cas-test.its.hawaii.edu/cas/logout?url=http://localhost:8080/its/dcmd/'
-//grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://cas-test.its.hawaii.edu/cas/'
-
-// CAS Future Test (usually this is the one to leave commented out)
-grails.plugin.springsecurity.logout.afterLogoutUrl =
-        'https://cas-future-test.its.hawaii.edu/cas/logout?url=http://localhost:8080/its/dcmd/'
-grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://cas-future-test.its.hawaii.edu/cas/'
-
-/***************************************************************************************
- * Un-comment this for Test
- ***************************************************************************************/
-//grails.plugin.springsecurity.cas.serviceUrl = 'http:///dcm51.its.hawaii.edu:8080/its/dcmd/j_spring_cas_security_check'
-//grails.plugin.springsecurity.cas.proxyCallbackUrl = null
-//grails.plugin.springsecurity.logout.afterLogoutUrl =
-//    'https://cas-test.its.hawaii.edu/cas/logout?url=http://dcm51.its.hawaii.edu:8080/its/dcmd/'
-//grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://cas-test.its.hawaii.edu/cas/'
-
-
-
-
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/user/home'
-//grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://login.its.hawaii.edu/cas'
 
 /* Set to null in order for CAS 5 security check to work */
 grails.plugin.springsecurity.cas.proxyReceptorUrl = null
@@ -179,13 +141,17 @@ grails.plugin.springsecurity.interceptUrlMap = [
         '/**':['ROLE_READ', 'ROLE_WRITE','ROLE_ADMIN']
 ]
 
-
 // set per-environment serverURL stem for creating absolute links
 environments {
-    test {
+    test {  // for automated tests (which might not work or need these)
         grails.serverURL = "http://dcm51.its.hawaii.edu:8080/its/${appName}"
+        grails.plugin.springsecurity.cas.serviceUrl = 'http:///dcm51.its.hawaii.edu:8080/its/dcmd/j_spring_cas_security_check'
+        grails.plugin.springsecurity.cas.proxyCallbackUrl = null
+        grails.plugin.springsecurity.logout.afterLogoutUrl =
+            'https://cas-test.its.hawaii.edu/cas/logout?url=http://dcm51.its.hawaii.edu:8080/its/dcmd/'
+        grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://cas-test.its.hawaii.edu/cas/'
     }
-    development {
+    development {   // for the developer's local machine
         grails.serverURL = "http://localhost:8080/its/${appName}"
         //grails.config.locations = ["file:${userHome}/.grails/${appName}Config.groovy"]
         /*
@@ -195,11 +161,30 @@ environments {
         }
         }
          */
-    }
-    production {
-        grails.serverURL =  "http://www.hawaii.edu/its/${appName}"
-    }
+        grails.plugin.springsecurity.cas.serviceUrl = 'http://localhost:8080/its/dcmd/j_spring_cas_security_check'
+        /* Set to null in order for CAS 5 security check to work. Original 'http://localhost:8080/its/dcmd/secure/receptor' */
+        grails.plugin.springsecurity.cas.proxyCallbackUrl = null
+        grails.plugin.springsecurity.cas.useSingleSignout = false
 
+        // CAS Test
+        grails.plugin.springsecurity.logout.afterLogoutUrl =
+                'https://cas-test.its.hawaii.edu/cas/logout?url=http://localhost:8080/its/dcmd/'
+        grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://cas-test.its.hawaii.edu/cas'
+
+        // CAS Future Test (usually this is the one to leave commented out)
+//        grails.plugin.springsecurity.logout.afterLogoutUrl =
+//                'https://cas-future-test.its.hawaii.edu/cas/logout?url=http://localhost:8080/its/dcmd/'
+//        grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://cas-future-test.its.hawaii.edu/cas'
+    }
+    production {    // for deployed wars
+        grails.serverURL =  "http://www.hawaii.edu/its/${appName}"
+        grails.plugin.springsecurity.cas.serviceUrl = 'https://www.hawaii.edu/its/dcmd/j_spring_cas_security_check'
+        grails.plugin.springsecurity.cas.proxyCallbackUrl = null
+        grails.plugin.springsecurity.logout.afterLogoutUrl =
+            'https://authn.hawaii.edu/cas/logout?url=https://www.hawaii.edu/its/dcmd/'
+        grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://authn.hawaii.edu/cas'
+        //grails.plugin.springsecurity.cas.serverUrlPrefix = 'https://login.its.hawaii.edu/cas'
+    }
 }
 
 ldapServers {
